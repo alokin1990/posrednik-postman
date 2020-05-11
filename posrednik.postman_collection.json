@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0662a6a7-9c74-4adb-b79c-19d1aeb7c150",
+		"_postman_id": "4315abf8-6baf-4d7a-b9df-e7af62674214",
 		"name": "middleman",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,7 +9,7 @@
 			"name": "company",
 			"item": [
 				{
-					"name": "Jobs",
+					"name": "Jobs Company",
 					"item": [
 						{
 							"name": "Get Jobs Posted By",
@@ -24,12 +24,10 @@
 									}
 								],
 								"url": {
-									"raw": "posrednik.mk:5000/jobs/getJobPostedBy",
+									"raw": "{{url}}/jobs/getJobPostedBy",
 									"host": [
-										"posrednik",
-										"mk"
+										"{{url}}"
 									],
-									"port": "5000",
 									"path": [
 										"jobs",
 										"getJobPostedBy"
@@ -50,13 +48,10 @@
 									}
 								],
 								"url": {
-									"raw": "http://posrednik.mk:5000/apply/getAllApplications",
-									"protocol": "http",
+									"raw": "{{url}}/apply/getAllApplications",
 									"host": [
-										"posrednik",
-										"mk"
+										"{{url}}"
 									],
-									"port": "5000",
 									"path": [
 										"apply",
 										"getAllApplications"
@@ -86,12 +81,10 @@
 									}
 								},
 								"url": {
-									"raw": "posrednik.mk:5000/jobs",
+									"raw": "{{url}}/jobs",
 									"host": [
-										"posrednik",
-										"mk"
+										"{{url}}"
 									],
-									"port": "5000",
 									"path": [
 										"jobs"
 									]
@@ -104,202 +97,188 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "signup Company",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"neremovski@gmail.com\",\r\n  \"name\": \"iskra\",\r\n  \"password\": \"neremovski@gmail.com\",\r\n  \"username\": \"neremovski@gmail.com\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "Manage Company",
+					"item": [
+						{
+							"name": "Update Profile",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2IiwiaWF0IjoxNTg3NDkzNDMwLCJleHAiOjE1ODgwOTgyMzB9.pPsqsToH6bp2cBxcknIBmUQhEezpr9QU2C-jE6QmmR3DBPkbPDw37dKo_fzbc3g8sO1EqYn2Ret0kF1OhoA62g",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"address\": {\r\n    \"city\": \"string\",\r\n    \"country\": \"string\",\r\n    \"streetAddress\": \"string\",\r\n    \"zip\": \"string\"\r\n  },\r\n  \"contactPerson\": \"string\",\r\n  \"email\": \"dimitar@gmail.com\",\r\n  \"name\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"size\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/company/createProfile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"company",
+										"createProfile"
+									]
 								}
-							}
-						},
-						"url": {
-							"raw": "posrednik.mk:5000/api/auth/signupCompany",
-							"host": [
-								"posrednik",
-								"mk"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"auth",
-								"signupCompany"
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				},
 				{
-					"name": "SignIn Company",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"password\": \"neremovski@gmail.com\",\r\n  \"usernameOrEmail\": \"neremovski@gmail.com\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "Auth Company",
+					"item": [
+						{
+							"name": "SignIn Company",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"password\": \"neremovski@gmail.com\",\r\n  \"usernameOrEmail\": \"neremovski@gmail.com\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url}}/api/auth/signin",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"signin"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "posrednik.mk:5000/api/auth/signin",
-							"host": [
-								"posrednik",
-								"mk"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"auth",
-								"signin"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Me",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "posrednik.mk:5000/api/user/me",
-							"host": [
-								"posrednik",
-								"mk"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"user",
-								"me"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Profile",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2IiwiaWF0IjoxNTg3NDkzNDMwLCJleHAiOjE1ODgwOTgyMzB9.pPsqsToH6bp2cBxcknIBmUQhEezpr9QU2C-jE6QmmR3DBPkbPDw37dKo_fzbc3g8sO1EqYn2Ret0kF1OhoA62g",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"address\": {\r\n    \"city\": \"string\",\r\n    \"country\": \"string\",\r\n    \"streetAddress\": \"string\",\r\n    \"zip\": \"string\"\r\n  },\r\n  \"contactPerson\": \"string\",\r\n  \"email\": \"dimitar@gmail.com\",\r\n  \"name\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"size\": 0\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						{
+							"name": "signup Company",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"neremovski@gmail.com\",\r\n  \"name\": \"iskra\",\r\n  \"password\": \"neremovski@gmail.com\",\r\n  \"username\": \"neremovski@gmail.com\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "{{url}}/api/auth/signupCompany",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"signupCompany"
+									]
 								}
-							}
-						},
-						"url": {
-							"raw": "posrednik.mk:5000/company/createProfile",
-							"host": [
-								"posrednik",
-								"mk"
-							],
-							"port": "5000",
-							"path": [
-								"company",
-								"createProfile"
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Get Notifications",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2IiwiaWF0IjoxNTg3NDk2NjQ3LCJleHAiOjE1ODgxMDE0NDd9.3s0TtSQbD2Zas5QESP46jekrZWiOVmivF1c2KRNmvZbjQ5hsNiqjNmUMtTbEj0b6t1rcx7XPFd931ha6N01JZQ",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "http://posrednik.mk:5000/notifications/getAll",
-							"protocol": "http",
-							"host": [
-								"posrednik",
-								"mk"
-							],
-							"port": "5000",
-							"path": [
-								"notifications",
-								"getAll"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Company ME",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMyIsImlhdCI6MTU4NzYyNjczNSwiZXhwIjoxNTg4MjMxNTM1fQ.9MiZQZY7f-IzhRFFirZShsEbKgkjhSykZImfe-4sml6LKKo6V6T68U8X9lmLSbxX2cPXxr49cnceaeylASTW9Q",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"address\": {\r\n    \"city\": \"string\",\r\n    \"country\": \"string\",\r\n    \"streetAddress\": \"string\",\r\n    \"zip\": \"string\"\r\n  },\r\n  \"contactPerson\": \"string\",\r\n  \"email\": \"dimitar@gmail.com\",\r\n  \"name\": \"string\",\r\n  \"phone\": \"string\",\r\n  \"size\": 0\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "View Company",
+					"item": [
+						{
+							"name": "Get Me",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/user/me",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"me"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "posrednik.mk:5000/company/getCompanyProfile",
-							"host": [
-								"posrednik",
-								"mk"
-							],
-							"port": "5000",
-							"path": [
-								"company",
-								"getCompanyProfile"
-							]
+						{
+							"name": "Get Notifications",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2IiwiaWF0IjoxNTg3NDk2NjQ3LCJleHAiOjE1ODgxMDE0NDd9.3s0TtSQbD2Zas5QESP46jekrZWiOVmivF1c2KRNmvZbjQ5hsNiqjNmUMtTbEj0b6t1rcx7XPFd931ha6N01JZQ",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}/notifications/getAll",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"notifications",
+										"getAll"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetCompanyProfile",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}/company/getCompanyProfile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"company",
+										"getCompanyProfile"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
 			],
 			"auth": {
@@ -307,7 +286,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTg3NjI4NDk2LCJleHAiOjE1ODgyMzMyOTZ9.SF_WmAQA2wvr8OB9YZFReNT5lWSrVDysdwkkW_-e-MzGCNb_09s6s8CmJ0JTChZ0jMsOUh4MALRmVf1FxjbrWw",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNTg5MTg4ODQ2LCJleHAiOjE1ODk3OTM2NDZ9.E7U6TBR4MDbLi2F8rrlyeTcPq14Tufz7lOHzAmu_IDqPVlN0X60m-Fv276EMiBmf7UPjVX-aZeV7-zxIbHJJeg",
 						"type": "string"
 					}
 				]
@@ -316,7 +295,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "7ef8db64-8a1d-4611-83c0-d8dea9d28c35",
+						"id": "d8a0bf0b-9fe6-4590-a6c4-b017417b7e75",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -326,7 +305,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "acf3691a-7ec4-41a5-a46d-71137690929d",
+						"id": "1060c7ed-f6a5-446a-9506-998237abccf9",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -341,36 +320,21 @@
 			"item": [
 				{
 					"name": "Get all files for review",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
 							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNTg3NDk5MDc3LCJleHAiOjE1ODgxMDM4Nzd9.4KA60kz_3Mk-3lxUe3SMvuEiUysg0-3IzHJ7Tb582MXbjB_Sr96CVKTwSh7nRJXpGcP6ULveG9IN1fPOzT25jQ",
-								"type": "text"
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "",
-									"type": "file",
-									"src": []
-								}
-							]
-						},
 						"url": {
-							"raw": "http://posrednik.mk:5000/api/file/getAllFiles",
-							"protocol": "http",
+							"raw": "{{url}}/api/file/getAllFiles",
 							"host": [
-								"posrednik",
-								"mk"
+								"{{url}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"file",
@@ -391,13 +355,15 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "posrednik.mk:5000/api/auth/verify/neremovski@gmail.com",
+							"raw": "{{url}}/api/auth/verify/neremovski@gmail.com",
 							"host": [
-								"posrednik",
-								"mk"
+								"{{url}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"auth",
@@ -414,19 +380,17 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTg2Njk0MjY2LCJleHAiOjE1ODcyOTkwNjZ9.tWYpl_tRPt7-73l6fmgZHSPldPXdY3BHkIXoZN2MLRUJpaszk3nRMQwaUU6m8jtkEJv-G9ARF1aneqfVvRRVxg",
-								"type": "text"
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
-							"raw": "http://posrednik.mk:5000/api/users/getAll",
-							"protocol": "http",
+							"raw": "{{url}}/api/users/getAll",
 							"host": [
-								"posrednik",
-								"mk"
+								"{{url}}"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"users",
@@ -437,6 +401,38 @@
 					"response": []
 				}
 			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTg1MDgyODIzLCJleHAiOjE1ODU2ODc2MjN9.cxc3gg7qkenNHmaxio4niofIHa3Sj5ICr1RFedef5r6zmMb7b6AMSBD0EJdxvE8iu3dZ0fvjtegIyRtpymn0YQ",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "106d1cf0-a2de-4e5a-816a-a576debd05d0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd640f9f-d067-4462-9869-ac85518fd9cd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
@@ -444,34 +440,21 @@
 			"item": [
 				{
 					"name": "Get All Active Jobs",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
 							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2IiwiaWF0IjoxNTg3NDkzODc0LCJleHAiOjE1ODgwOTg2NzR9.tfr4xKv-7SzEpbgmiQ-0KtiMbzJrEXAtm2CXiWgqERiZLpVtKmm-zFml2et-zFe0Mj_tf7kntPTcFaF8nf0R2g",
-								"type": "text"
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"companyInfo\": {\r\n    \"address\": {\r\n      \"city\": \"Skopje\",\r\n      \"country\": \"Macedonia\",\r\n      \"streetAddress\": \"Razlovecko Bla\",\r\n      \"zip\": \"1000\"\r\n    },\r\n    \"contactPerson\": \"Dimitar\",\r\n    \"email\": \"mail@mail.com\",\r\n    \"name\": \"iTS\",\r\n    \"phone\": \"+38972272192\",\r\n    \"size\": 150\r\n  },\r\n  \"jobInfo\": {\r\n    \"accomodation\": true,\r\n    \"applications\": 0,\r\n    \"category\": \"string\",\r\n    \"dateFrom\": \"2020-03-25T10:45:06.672Z\",\r\n    \"dateTo\": \"2020-03-25T10:45:06.672Z\",\r\n    \"expireDate\": \"2020-03-25T10:45:06.672Z\",\r\n    \"food\": true,\r\n    \"hourlyPrice\": 0,\r\n    \"jobDescription\": \"bla\",\r\n    \"jobTitle\": \"bla\",\r\n    \"jobType\": \"bla\",\r\n    \"location\": \"bla\",\r\n    \"positions\": 4,\r\n    \"workTimeModel\": \"bla\"\r\n  },\r\n  \"qualifications\": [\r\n    \"string\",\"bla\"\r\n  ],\r\n  \"responsabilities\": [\r\n    \"string\"\r\n  ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "posrednik.mk:5000/jobs/getAll",
+							"raw": "{{url}}/jobs/getAll",
 							"host": [
-								"posrednik",
-								"mk"
+								"{{url}}"
 							],
-							"port": "5000",
 							"path": [
 								"jobs",
 								"getAll"
@@ -492,16 +475,14 @@
 							}
 						],
 						"url": {
-							"raw": "posrednik.mk:5000/jobs/getJobById/21",
+							"raw": "{{url}}/jobs/getJobById/108",
 							"host": [
-								"posrednik",
-								"mk"
+								"{{url}}"
 							],
-							"port": "5000",
 							"path": [
 								"jobs",
 								"getJobById",
-								"21"
+								"108"
 							]
 						}
 					},
@@ -513,7 +494,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTg3NjI4NDk2LCJleHAiOjE1ODgyMzMyOTZ9.SF_WmAQA2wvr8OB9YZFReNT5lWSrVDysdwkkW_-e-MzGCNb_09s6s8CmJ0JTChZ0jMsOUh4MALRmVf1FxjbrWw",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNTg5MTg4ODQ2LCJleHAiOjE1ODk3OTM2NDZ9.E7U6TBR4MDbLi2F8rrlyeTcPq14Tufz7lOHzAmu_IDqPVlN0X60m-Fv276EMiBmf7UPjVX-aZeV7-zxIbHJJeg",
 						"type": "string"
 					}
 				]
@@ -522,7 +503,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "ed6309bc-657f-4fb2-80ac-4c6f340d8df9",
+						"id": "37237af8-2301-4686-a64b-15c80d081c20",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -532,7 +513,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1fcbc9db-181f-440f-9c97-4c9e9f9f25b0",
+						"id": "993949bc-f6d7-45ab-ae41-75d4d4c07da3",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -586,6 +567,10 @@
 										"type": "text"
 									}
 								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"url": {
 									"raw": "posrednik.mk:5000/apply/21",
 									"host": [
@@ -606,259 +591,359 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Signup user",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"jdimitar2@gmail.com\",\r\n  \"name\": \"string\",\r\n  \"password\": \"password\",\r\n  \"username\": \"jdimitar2\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "posrednik.mk:5000/api/auth/signup",
-							"host": [
-								"posrednik",
-								"mk"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"auth",
-								"signup"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "SignIn User",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"password\": \"string\",\r\n  \"usernameOrEmail\": \"jdimitar\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:5000/api/auth/signin",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"auth",
-								"signin"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Me",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "posrednik.mk:5000/api/user/me",
-							"host": [
-								"posrednik",
-								"mk"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"user",
-								"me"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update User Profile",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNTg1NzIxNTA1LCJleHAiOjE1ODYzMjYzMDV9.peSBkufRKMCaFm0t7zodoy3xtGM-SaOB28AXbsUreIWBC3mS2vGUOz7igq1mwCpQvOHZHLm-lajau3BAf1zSLg",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"contactInformation\": {\r\n    \"address\": {\r\n      \"city\": \"Kocani\",\r\n      \"country\": \"Macedonia\",\r\n      \"streetAddress\": \"bla\",\r\n      \"zip\": \"1000\"\r\n    },\r\n    \"email\": \"dmt@gmail.com\",\r\n    \"phone\": \"0721232445\"\r\n  },\r\n  \"education\": [\r\n    {\r\n      \"dateFrom\": \"2020-03-31T19:47:14.518Z\",\r\n      \"dateTo\": \"2020-03-31T19:47:14.518Z\",\r\n      \"university\": \"UKIM\",\r\n      \"vacationEnd\": \"2020-03-31T19:47:14.518Z\",\r\n      \"vacationStart\": \"2020-03-31T19:47:14.518Z\"\r\n    }\r\n  ],\r\n  \"emergencyContact\": {\r\n    \"contactPerson\": \"Dimitar\",\r\n    \"email\": \"dimitar@gmail.com\",\r\n    \"phoneNumber\": \"123456789\"\r\n  },\r\n  \"languages\": [\r\n    {\r\n      \"language\": \"English\",\r\n      \"proficiency\": \"a1\"\r\n    }\r\n  ],\r\n  \"skills\": [\r\n    \"string\"\r\n  ],\r\n  \"socialMedia\": {\r\n    \"facebook\": \"string\",\r\n    \"instagram\": \"string\",\r\n    \"linkedin\": \"string\"\r\n  },\r\n  \"userDetails\": {\r\n    \"aboutMe\": \"string\",\r\n    \"citizenship\": \"string\",\r\n    \"contryOfResidence\": \"string\",\r\n    \"dateOfBirth\": \"2020-03-31T19:47:14.518Z\",\r\n    \"lastName\": \"string\",\r\n    \"name\": \"string\",\r\n    \"phone\": \"string\",\r\n    \"proffession\": \"string\"\r\n  },\r\n  \"workHistory\": [\r\n    {\r\n      \"company\": \"string\",\r\n      \"dateFrom\": \"2020-03-31T19:47:14.518Z\",\r\n      \"dateTo\": \"2020-03-31T19:47:14.518Z\",\r\n      \"jobTitle\": \"string\",\r\n      \"responsabilities\": \"string\"\r\n    }\r\n  ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:5000/userProfile",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"userProfile"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Upload Files",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3IiwiaWF0IjoxNTg3NDk0NzU3LCJleHAiOjE1ODgwOTk1NTd9.MRyLWl4TblTe91expET8_GRQT0U77S-07BgwgNnd4yDfk1U3ULbazltWq8i8pHVJpQs47VzgacZiwFZeLUvxOQ",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"contentType": "multipart/form-data",
-									"type": "file",
-									"src": "/C:/Users/Nikola/Desktop/response.json"
+					"name": "Manage_User",
+					"item": [
+						{
+							"name": "Update User Profile",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"contactInformation\": {\r\n    \"address\": {\r\n      \"city\": \"Kocani\",\r\n      \"country\": \"Macedonia\",\r\n      \"streetAddress\": \"bla\",\r\n      \"zip\": \"1000\"\r\n    },\r\n    \"email\": \"dmt@gmail.com\",\r\n    \"phone\": \"0721232445\"\r\n  },\r\n  \"education\": [\r\n    {\r\n      \"dateFrom\": \"2020-03-31T19:47:14.518Z\",\r\n      \"dateTo\": \"2020-03-31T19:47:14.518Z\",\r\n      \"university\": \"UKIM\",\r\n      \"vacationEnd\": \"2020-03-31T19:47:14.518Z\",\r\n      \"vacationStart\": \"2020-03-31T19:47:14.518Z\"\r\n    }\r\n  ],\r\n  \"emergencyContact\": {\r\n    \"contactPerson\": \"Dimitar\",\r\n    \"email\": \"dimitar@gmail.com\",\r\n    \"phoneNumber\": \"123456789\"\r\n  },\r\n  \"languages\": [\r\n    {\r\n      \"language\": \"English\",\r\n      \"proficiency\": \"a1\"\r\n    }\r\n  ],\r\n  \"skills\": [\r\n    {\"skill\": \"string\"}\r\n  ],\r\n  \"socialMedia\": {\r\n    \"facebook\": \"string\",\r\n    \"instagram\": \"string\",\r\n    \"linkedin\": \"string\"\r\n  },\r\n  \"userDetails\": {\r\n    \"aboutMe\": \"string\",\r\n    \"citizenship\": \"string\",\r\n    \"contryOfResidence\": \"string\",\r\n    \"dateOfBirth\": \"2020-03-31T19:47:14.518Z\",\r\n    \"lastName\": \"string\",\r\n    \"name\": \"string\",\r\n    \"phone\": \"string\",\r\n    \"proffession\": \"string\"\r\n  },\r\n  \"workHistory\": [\r\n    {\r\n      \"company\": \"string\",\r\n      \"dateFrom\": \"2020-03-31T19:47:14.518Z\",\r\n      \"dateTo\": \"2020-03-31T19:47:14.518Z\",\r\n      \"jobTitle\": \"string\",\r\n      \"responsabilities\": \"string\"\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
-								{
-									"key": "docName",
-									"value": "response",
-									"type": "text"
+								"url": {
+									"raw": "{{url}}/userProfile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"userProfile"
+									]
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "posrednik.mk:5000/api/file/upload/db",
-							"host": [
-								"posrednik",
-								"mk"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"file",
-								"upload",
-								"db"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": null,
-									"disabled": true
+						{
+							"name": "Upload Files",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3IiwiaWF0IjoxNTg3NDk0NzU3LCJleHAiOjE1ODgwOTk1NTd9.MRyLWl4TblTe91expET8_GRQT0U77S-07BgwgNnd4yDfk1U3ULbazltWq8i8pHVJpQs47VzgacZiwFZeLUvxOQ",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"contentType": "multipart/form-data",
+											"type": "file",
+											"src": "/C:/Users/Nikola/Desktop/response.json"
+										},
+										{
+											"key": "docName",
+											"value": "response",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/file/upload/db",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"file",
+										"upload",
+										"db"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
 								}
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Get all files from user",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNTg3NDk5MDc3LCJleHAiOjE1ODgxMDM4Nzd9.4KA60kz_3Mk-3lxUe3SMvuEiUysg0-3IzHJ7Tb582MXbjB_Sr96CVKTwSh7nRJXpGcP6ULveG9IN1fPOzT25jQ"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
+					"name": "Auth User",
+					"item": [
+						{
+							"name": "SignIn User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"password\": \"niksa@gmail.com\",\r\n  \"usernameOrEmail\": \"niksa@gmail.com\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url}}/api/auth/signin",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"signin"
+									]
+								}
+							},
+							"response": [
 								{
-									"key": "",
-									"type": "file",
-									"src": []
+									"name": "SignIn User",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"password\": \"niksa@gmail.com\",\r\n  \"usernameOrEmail\": \"niksa@gmail.com\"\r\n}"
+										},
+										"url": {
+											"raw": "{{url}}/api/auth/signin",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"auth",
+												"signin"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*",
+											"name": "access-control-allow-origin",
+											"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+										},
+										{
+											"key": "cache-control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate",
+											"name": "cache-control",
+											"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+										},
+										{
+											"key": "content-encoding",
+											"value": "gzip",
+											"name": "content-encoding",
+											"description": "The type of encoding used on the data."
+										},
+										{
+											"key": "content-type",
+											"value": "application/json;charset=UTF-8",
+											"name": "content-type",
+											"description": "The mime type of this content"
+										},
+										{
+											"key": "date",
+											"value": "Mon, 11 May 2020 09:11:18 GMT",
+											"name": "date",
+											"description": "The date and time that the message was sent"
+										},
+										{
+											"key": "expires",
+											"value": "0",
+											"name": "expires",
+											"description": "Gives the date/time after which the response is considered stale"
+										},
+										{
+											"key": "pragma",
+											"value": "no-cache",
+											"name": "pragma",
+											"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+										},
+										{
+											"key": "transfer-encoding",
+											"value": "chunked",
+											"name": "transfer-encoding",
+											"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+										},
+										{
+											"key": "vary",
+											"value": "Origin,Accept-Encoding",
+											"name": "vary",
+											"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff",
+											"name": "x-content-type-options",
+											"description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "DENY",
+											"name": "x-frame-options",
+											"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block",
+											"name": "x-xss-protection",
+											"description": "Cross-site scripting (XSS) filter"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTg5MTg4Mjc4LCJleHAiOjE1ODk3OTMwNzh9.toDgD44x6KxezcprHqOysmiZXDXwYjMiHRC6B6pRnAO-Q7YLRexZHyPyDz3u3kOYcQZ4QdGO3YTEoLD0k7OPQw\",\n    \"tokenType\": \"Bearer\"\n}"
 								}
 							]
 						},
-						"url": {
-							"raw": "http://posrednik.mk:5000/api/file/ravaruvach/getAllFiles",
-							"protocol": "http",
-							"host": [
-								"posrednik",
-								"mk"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"file",
-								"ravaruvach",
-								"getAllFiles"
-							]
+						{
+							"name": "Signup user",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"jdimistar2@gmail.com\",\r\n  \"name\": \"string\",\r\n  \"password\": \"password\",\r\n  \"username\": \"jdimitar2\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url}}/api/auth/signup",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Download file",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNTg3NTU2OTY1LCJleHAiOjE1ODgxNjE3NjV9.Fv6Y6L9s4P1hvAD1dfLsudcMR9Nlyg6z10wWxHjZL3nmUIHwtFLSkz9UjRHlru30fHZXCu3kEYx_glcJANtmhA",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://posrednik.mk:5000/api/file/download/db/passport",
-							"protocol": "http",
-							"host": [
-								"posrednik",
-								"mk"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"file",
-								"download",
-								"db",
-								"passport"
-							]
+					"name": "View User",
+					"item": [
+						{
+							"name": "Download file",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNTg3NTU2OTY1LCJleHAiOjE1ODgxNjE3NjV9.Fv6Y6L9s4P1hvAD1dfLsudcMR9Nlyg6z10wWxHjZL3nmUIHwtFLSkz9UjRHlru30fHZXCu3kEYx_glcJANtmhA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/file/download/db/passport",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"file",
+										"download",
+										"db",
+										"passport"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Me",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/user/me",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"me"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all files from user",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1IiwiaWF0IjoxNTg3NDk5MDc3LCJleHAiOjE1ODgxMDM4Nzd9.4KA60kz_3Mk-3lxUe3SMvuEiUysg0-3IzHJ7Tb582MXbjB_Sr96CVKTwSh7nRJXpGcP6ULveG9IN1fPOzT25jQ"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/file/ravaruvach/getAllFiles",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"file",
+										"ravaruvach",
+										"getAllFiles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetUserProflie",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/userProfile/getUserProfile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"userProfile",
+										"getUserProfile"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
 			],
 			"auth": {
@@ -866,7 +951,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNTg3NjI4OTA0LCJleHAiOjE1ODgyMzM3MDR9.g_dUe7saMl3epjwDlY8x2I5VcAF2Koa3_oPVtcGA1gNHdk_qz-nzFiqd9En4vWWJg8hnlWEG9MtNDHcV-YJ1jw",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTg5MTg4NTAwLCJleHAiOjE1ODk3OTMzMDB9.XLjeVtQyphtUUaZqMRn-VYwl98pni7dvTsgqpN1MnOe21eDMvvzOJl1jmr-AnTsvqMwRUqFBnFrbVTNyOiBWjQ",
 						"type": "string"
 					}
 				]
@@ -875,7 +960,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "44b9d1ad-e0ce-43e6-a2c7-99685a213094",
+						"id": "79ab720f-ea04-401a-bd5e-353ab33bb8ee",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -885,7 +970,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "90cd6835-32f0-4e72-b27f-07e3e9e9a3b1",
+						"id": "c6e1d330-7755-4f52-9f20-98b2cb87e2a0",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -917,12 +1002,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"choices\": [\r\n  \t{\r\n  \t\t\"text\":\"Apply as developer!\"}\r\n  \t],\r\n  \t\r\n  \"job\": {\r\n    \"description\": \"Dolg tekst za rabotata\",\r\n    \"jobEnds\": \"2019-12-23T19:35:03.600Z\",\r\n    \"jobStarts\": \"2019-12-23T19:35:03.600Z\",\r\n    \"location\": {\r\n      \"city\": \"skopje\",\r\n      \"country\": \"Macedonia\",\r\n      \"streetAddress\": \"ulica\",\r\n      \"zip\": \"1000\"\r\n    },\r\n    \"name\": \"Oglas za dev\",\r\n    \"profile\": \"development\",\r\n    \"qualifications\": \"Developer\",\r\n    \"requirements\": \"5 year experiance\",\r\n    \"salary\": 123\r\n  },\r\n  \"pollLength\": {\r\n    \"days\": 1,\r\n    \"hours\": 2\r\n  },\r\n  \"pollName\": \"Oglas za rabota\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\r\n  \"choices\": [\r\n  \t{\r\n  \t\t\"text\":\"Apply as developer!\"}\r\n  \t],\r\n  \t\r\n  \"job\": {\r\n    \"description\": \"Dolg tekst za rabotata\",\r\n    \"jobEnds\": \"2019-12-23T19:35:03.600Z\",\r\n    \"jobStarts\": \"2019-12-23T19:35:03.600Z\",\r\n    \"location\": {\r\n      \"city\": \"skopje\",\r\n      \"country\": \"Macedonia\",\r\n      \"streetAddress\": \"ulica\",\r\n      \"zip\": \"1000\"\r\n    },\r\n    \"name\": \"Oglas za dev\",\r\n    \"profile\": \"development\",\r\n    \"qualifications\": \"Developer\",\r\n    \"requirements\": \"5 year experiance\",\r\n    \"salary\": 123\r\n  },\r\n  \"pollLength\": {\r\n    \"days\": 1,\r\n    \"hours\": 2\r\n  },\r\n  \"pollName\": \"Oglas za rabota\"\r\n}"
 						},
 						"url": {
 							"raw": "localhost:5000/api/polls",
@@ -941,9 +1021,6 @@
 				},
 				{
 					"name": "localhost:5000/api/polls",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -959,15 +1036,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"choices\": [\r\n  \t{\"text\":\"Apply as developer!\"}\r\n  \t],\r\n  \"pollLength\": {\r\n    \"days\": 1,\r\n    \"hours\": 1\r\n  },\r\n  \"question\": \"Iskratel\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "localhost:5000/api/polls",
 							"host": [
@@ -1002,12 +1070,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"choiceId\":3,\"pollId\":2}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\"choiceId\":3,\"pollId\":2}"
 						},
 						"url": {
 							"raw": "localhost:5000/api/polls/2/votes",
@@ -1051,12 +1114,7 @@
 									"value": "+38972261605",
 									"type": "text"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							]
 						},
 						"url": {
 							"raw": "posrednik.mk:5000/subscribe/new/",
@@ -1076,9 +1134,6 @@
 				},
 				{
 					"name": "localhost:5000/api/file/upload/db",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1088,16 +1143,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"type": "file",
-									"src": "/C:/Users/iskratel/Desktop/Java-collection.jpg"
-								}
-							]
-						},
 						"url": {
 							"raw": "localhost:5000/api/file/download/db/tekst",
 							"host": [
@@ -1135,12 +1180,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"companyInfo\": {\r\n    \"address\": {\r\n      \"city\": \"Skopje\",\r\n      \"country\": \"Macedonia\",\r\n      \"streetAddress\": \"Razlovecko Bla\",\r\n      \"zip\": \"1000\"\r\n    },\r\n    \"contactPerson\": \"Dimitar\",\r\n    \"email\": \"mail@mail.com\",\r\n    \"name\": \"iTS\",\r\n    \"phone\": \"+38972272192\",\r\n    \"size\": 150\r\n  },\r\n  \"jobInfo\": {\r\n    \"accomodation\": true,\r\n    \"applications\": 0,\r\n    \"category\": \"string\",\r\n    \"dateFrom\": \"2020-03-25T10:45:06.672Z\",\r\n    \"dateTo\": \"2020-03-25T10:45:06.672Z\",\r\n    \"expireDate\": \"2020-03-25T10:45:06.672Z\",\r\n    \"food\": true,\r\n    \"hourlyPrice\": 0,\r\n    \"jobDescription\": \"bla\",\r\n    \"jobTitle\": \"bla\",\r\n    \"jobType\": \"bla\",\r\n    \"location\": \"bla\",\r\n    \"positions\": 4,\r\n    \"workTimeModel\": \"bla\"\r\n  },\r\n  \"qualifications\": [\r\n    \"string\",\"bla\"\r\n  ],\r\n  \"responsabilities\": [\r\n    \"string\"\r\n  ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\r\n  \"companyInfo\": {\r\n    \"address\": {\r\n      \"city\": \"Skopje\",\r\n      \"country\": \"Macedonia\",\r\n      \"streetAddress\": \"Razlovecko Bla\",\r\n      \"zip\": \"1000\"\r\n    },\r\n    \"contactPerson\": \"Dimitar\",\r\n    \"email\": \"mail@mail.com\",\r\n    \"name\": \"iTS\",\r\n    \"phone\": \"+38972272192\",\r\n    \"size\": 150\r\n  },\r\n  \"jobInfo\": {\r\n    \"accomodation\": true,\r\n    \"applications\": 0,\r\n    \"category\": \"string\",\r\n    \"dateFrom\": \"2020-03-25T10:45:06.672Z\",\r\n    \"dateTo\": \"2020-03-25T10:45:06.672Z\",\r\n    \"expireDate\": \"2020-03-25T10:45:06.672Z\",\r\n    \"food\": true,\r\n    \"hourlyPrice\": 0,\r\n    \"jobDescription\": \"bla\",\r\n    \"jobTitle\": \"bla\",\r\n    \"jobType\": \"bla\",\r\n    \"location\": \"bla\",\r\n    \"positions\": 4,\r\n    \"workTimeModel\": \"bla\"\r\n  },\r\n  \"qualifications\": [\r\n    \"string\",\"bla\"\r\n  ],\r\n  \"responsabilities\": [\r\n    \"string\"\r\n  ]\r\n}"
 						},
 						"url": {
 							"raw": "localhost:5000/jobs",
